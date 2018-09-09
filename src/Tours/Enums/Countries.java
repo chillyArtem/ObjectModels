@@ -1,4 +1,4 @@
-package Tours;
+package Tours.Enums;
 
 public enum Countries {
     RUSSIA,
