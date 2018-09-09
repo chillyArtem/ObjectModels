@@ -17,6 +17,7 @@ public class Application {
     private int desiredNumberOfDays;
     private Transport transport;
     private TypeOfFeed typeOfFood;
+    private int creditDuration;
 
 
     public static void main(String[] args) throws IOException {
@@ -25,14 +26,15 @@ public class Application {
         application.run();
     }
 
+    //        System.out.printf("%s%n%s%n%s%n%s%n", "What country you'd like to visit:", " - Estonia", " - Finland", " - Russia");
     void init() throws IOException {
         System.out.printf("%s%n%s%n%s%n", "What type of tour your want to buy:", " - Shop", " - Sightseeing");
-        typeOfTour = bufferedReader.readLine();
-        System.out.printf("%s%n%s%n%s%n%s%n", "What country you'd like to visit:", " - Estonia", " - Finland", " - Russia");
+        typeOfTour = bufferedReader.readLine().toUpperCase();
+        System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n", "What country you'd like to visit:", Countries.ESTONIA, Countries.FINLAND, Countries.FRANCE, Countries.GERMANY, Countries.ITALIA, Countries.RUSSIA);
         country = Countries.valueOf(bufferedReader.readLine().toUpperCase());
         System.out.println("How many days you want this tour long");
         desiredNumberOfDays = Integer.parseInt(bufferedReader.readLine());
-        if (!typeOfTour.equals("Shop")) {
+        if (!typeOfTour.equals("SHOP")) {
             System.out.printf("%s%n%s%n%s%n%s%n%s%n", "What transport would you like to use:", "Please note traveling by bus is by default", " - Plane", " - Train", " - Bus");
             try {
                 transport = Transport.valueOf(bufferedReader.readLine().toUpperCase());
@@ -46,21 +48,45 @@ public class Application {
                 typeOfFood = null;
             }
         }
+        System.out.println("Do you wanna have a credit? ");
+        if (bufferedReader.readLine().toUpperCase().equals("YES")) {
+            System.out.printf("%s%n%s%n%s%n%s%n%s%n", "How long the credit should be: ", "6 months", "12 months", "18 months", "24 months");
+            try {
+                creditDuration = Integer.parseInt(bufferedReader.readLine());
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Entered incorrect number of months. Please try again");
+                creditDuration = Integer.parseInt(bufferedReader.readLine());
+            }
+        }
     }
 
     void run() {
 
-        if (typeOfTour.equals("Shop")) {
-            Shop_tour tour = new Shop_tour(country, desiredNumberOfDays);
-            System.out.println(tour.calculateOverallPrice());
+        if (typeOfTour.toUpperCase().equals("SHOP")) {
+            if (creditDuration > 0) {
+                Shop_tour tour = new Shop_tour(country, desiredNumberOfDays, creditDuration);
+                System.out.println(tour.applyCredit());
+
+            } else {
+                Shop_tour tour = new Shop_tour(country, desiredNumberOfDays);
+                System.out.println(tour.calculateOverallPrice());
+            }
         }
 
-        if (typeOfTour.equals("Sightseeing")) {
-            if (typeOfFood != null){
-                Sightseeing_tour tour = new Sightseeing_tour(country, desiredNumberOfDays, transport, typeOfFood);
-                System.out.println(tour.provideFeed());
-            }
-            else{
+        if (typeOfTour.toUpperCase().equals("SIGHTSEEING")) {
+            if (typeOfFood != null) {
+                if (creditDuration > 0) {
+                    Sightseeing_tour tour = new Sightseeing_tour(country, desiredNumberOfDays, transport, typeOfFood, creditDuration);
+                    System.out.println(tour.applyCredit());
+                } else {
+                    Sightseeing_tour tour = new Sightseeing_tour(country, desiredNumberOfDays, transport, typeOfFood);
+                    System.out.println(tour.provideFeed());
+                }
+
+            } else if (creditDuration > 0) {
+                Sightseeing_tour tour = new Sightseeing_tour(country, desiredNumberOfDays, transport, creditDuration);
+                System.out.println(tour.applyCredit());
+            } else {
                 Sightseeing_tour tour = new Sightseeing_tour(country, desiredNumberOfDays, transport);
                 System.out.println(tour.calculateOverallPrice());
             }

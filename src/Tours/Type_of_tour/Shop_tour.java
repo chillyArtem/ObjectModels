@@ -5,6 +5,7 @@ import Tours.Enums.Countries;
 public class Shop_tour extends Tour {
     private Countries country;
     private int desiredNumberOfDays;
+    private int creditDuration;
 
 
    public Shop_tour(Countries county) {
@@ -14,6 +15,10 @@ public class Shop_tour extends Tour {
     public Shop_tour(Countries county, int desiredNumberOfDays){
         this(county);
         this.desiredNumberOfDays = desiredNumberOfDays;
+    }
+    public Shop_tour(Countries county, int desiredNumberOfDays, int creditDuration){
+        this(county, desiredNumberOfDays);
+        this.creditDuration = creditDuration;
     }
 
     @Override
@@ -38,7 +43,18 @@ public class Shop_tour extends Tour {
     }
 
     @Override
-    public void applyCredit() {
-
+    public String applyCredit() {
+        if (creditDuration == 6) {
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.15 + "\n" + "Overall price = " + calculateOverallPrice() * 1.15;
+        }
+        if (creditDuration == 12){
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.23 + "\n" + "Overall price = " + calculateOverallPrice() * 1.23;
+        }
+        if (creditDuration == 18){
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.33 + "\n" + "Overall price = " + calculateOverallPrice() * 1.33;
+        }
+        else {
+            return  "Monthly payment = " + calculateOverallPrice() / 6 * 1.39 + "\n" + "Overall price = " + calculateOverallPrice() * 1.39;
+        }
     }
 }

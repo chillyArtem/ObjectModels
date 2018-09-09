@@ -11,6 +11,7 @@ public class Sightseeing_tour extends Tour implements Feedable {
     private int desiredNumberOfDays;
     private Transport transport;
     private TypeOfFeed feed;
+    private int creditDuration;
 
     public Sightseeing_tour(Countries county) {
         this.country = county;
@@ -26,9 +27,19 @@ public class Sightseeing_tour extends Tour implements Feedable {
         this.transport = transport;
     }
 
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, int creditDuration) {
+        this(county, desiredNumberOfDays, transport);
+        this.creditDuration = creditDuration;
+    }
+
     public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, TypeOfFeed feed) {
         this(county, desiredNumberOfDays, transport);
         this.feed = feed;
+    }
+
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, TypeOfFeed feed, int creditDuration) {
+        this(county, desiredNumberOfDays, transport, feed);
+        this.creditDuration = creditDuration;
     }
 
 
@@ -64,8 +75,19 @@ public class Sightseeing_tour extends Tour implements Feedable {
     }
 
     @Override
-    public void applyCredit() {
-
+    public String applyCredit() {
+        if (creditDuration == 6) {
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.15 + "\n" + "Overall price = " + calculateOverallPrice() * 1.15;
+        }
+        if (creditDuration == 12){
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.23 + "\n" + "Overall price = " + calculateOverallPrice() * 1.23;
+        }
+        if (creditDuration == 18){
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.33 + "\n" + "Overall price = " + calculateOverallPrice() * 1.33;
+        }
+        else {
+            return  "Monthly payment = " + calculateOverallPrice() / 6 * 1.39 + "\n" + "Overall price = " + calculateOverallPrice() * 1.39;
+        }
     }
 
     @Override
