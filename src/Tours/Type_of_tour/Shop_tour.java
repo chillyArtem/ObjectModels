@@ -7,11 +7,11 @@ public class Shop_tour extends Tour {
     private int desiredNumberOfDays;
 
 
-    private Shop_tour(Countries county) {
+   public Shop_tour(Countries county) {
         this.country = county;
     }
 
-    Shop_tour(Countries county, int desiredNumberOfDays){
+    public Shop_tour(Countries county, int desiredNumberOfDays){
         this(county);
         this.desiredNumberOfDays = desiredNumberOfDays;
     }

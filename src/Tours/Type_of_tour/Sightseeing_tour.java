@@ -12,21 +12,21 @@ public class Sightseeing_tour extends Tour implements Feedable {
     private Transport transport;
     private TypeOfFeed feed;
 
-    private Sightseeing_tour(Countries county) {
+    public Sightseeing_tour(Countries county) {
         this.country = county;
     }
 
-    private Sightseeing_tour(Countries county, int desiredNumberOfDays) {
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays) {
         this(county);
         this.desiredNumberOfDays = desiredNumberOfDays;
     }
 
-    Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport) {
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport) {
         this(county, desiredNumberOfDays);
         this.transport = transport;
     }
 
-    Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, TypeOfFeed feed) {
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, TypeOfFeed feed) {
         this(county, desiredNumberOfDays, transport);
         this.feed = feed;
     }

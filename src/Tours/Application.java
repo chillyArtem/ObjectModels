@@ -1,8 +1,7 @@
 package Tours;
 
-import Tours.Enums.Countries;
-import Tours.Enums.Transport;
-import Tours.Enums.TypeOfFeed;
+
+import Tours.Enums.*;
 import Tours.Type_of_tour.Shop_tour;
 import Tours.Type_of_tour.Sightseeing_tour;
 
