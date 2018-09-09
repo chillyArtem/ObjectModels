@@ -2,13 +2,13 @@ package Tours;
 
 
 import Tours.Enums.*;
+import Tours.Type_of_tour.Available_tours;
 import Tours.Type_of_tour.Shop_tour;
 import Tours.Type_of_tour.Sightseeing_tour;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 
 public class Application {
     private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -26,14 +26,26 @@ public class Application {
         application.run();
     }
 
-    //        System.out.printf("%s%n%s%n%s%n%s%n", "What country you'd like to visit:", " - Estonia", " - Finland", " - Russia");
     void init() throws IOException {
         System.out.printf("%s%n%s%n%s%n", "What type of tour your want to buy:", " - Shop", " - Sightseeing");
         typeOfTour = bufferedReader.readLine().toUpperCase();
+
         System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n", "What country you'd like to visit:", Countries.ESTONIA, Countries.FINLAND, Countries.FRANCE, Countries.GERMANY, Countries.ITALIA, Countries.RUSSIA);
         country = Countries.valueOf(bufferedReader.readLine().toUpperCase());
+        if (typeOfTour.toUpperCase().equals("SHOP")) {
+            System.out.print("Please see what tours to the country we have: " + "\n");
+            Available_tours.getShopTour(country);
+            System.out.println();
+        }
+        if (typeOfTour.toUpperCase().equals("SIGHTSEEING")) {
+            System.out.print("Please see what tours to the country we have: ");
+            Available_tours.getSightseeingTour(country);
+            System.out.println();
+        }
+
         System.out.println("How many days you want this tour long");
         desiredNumberOfDays = Integer.parseInt(bufferedReader.readLine());
+
         if (!typeOfTour.equals("SHOP")) {
             System.out.printf("%s%n%s%n%s%n%s%n%s%n", "What transport would you like to use:", "Please note traveling by bus is by default", " - Plane", " - Train", " - Bus");
             try {
@@ -48,6 +60,7 @@ public class Application {
                 typeOfFood = null;
             }
         }
+
         System.out.println("Do you wanna have a credit? ");
         if (bufferedReader.readLine().toUpperCase().equals("YES")) {
             System.out.printf("%s%n%s%n%s%n%s%n%s%n", "How long the credit should be: ", "6 months", "12 months", "18 months", "24 months");

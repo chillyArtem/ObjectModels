@@ -6,24 +6,42 @@ public class Shop_tour extends Tour {
     private Countries country;
     private int desiredNumberOfDays;
     private int creditDuration;
+    private float price;
 
-
-   public Shop_tour(Countries county) {
+    public Shop_tour(Countries county) {
         this.country = county;
     }
 
-    public Shop_tour(Countries county, int desiredNumberOfDays){
+    public Shop_tour(Countries county, int desiredNumberOfDays) {
         this(county);
         this.desiredNumberOfDays = desiredNumberOfDays;
     }
-    public Shop_tour(Countries county, int desiredNumberOfDays, int creditDuration){
+
+    public Shop_tour(Countries county, int desiredNumberOfDays, float price) {
+        this(county, desiredNumberOfDays);
+        this.price = price;
+    }
+
+    public Shop_tour(Countries county, int desiredNumberOfDays, int creditDuration) {
         this(county, desiredNumberOfDays);
         this.creditDuration = creditDuration;
     }
 
+    public Countries getCountry() {
+        return country;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public int getDesiredNumberOfDays() {
+        return desiredNumberOfDays;
+    }
+
     @Override
     public int calculateOverallPrice() {
-        switch (country){
+        switch (country) {
             case RUSSIA:
                 return 1500 * desiredNumberOfDays;
             case ITALIA:
@@ -47,14 +65,15 @@ public class Shop_tour extends Tour {
         if (creditDuration == 6) {
             return "Monthly payment = " + calculateOverallPrice() / 6 * 1.15 + "\n" + "Overall price = " + calculateOverallPrice() * 1.15;
         }
-        if (creditDuration == 12){
+        if (creditDuration == 12) {
             return "Monthly payment = " + calculateOverallPrice() / 6 * 1.23 + "\n" + "Overall price = " + calculateOverallPrice() * 1.23;
         }
-        if (creditDuration == 18){
+        if (creditDuration == 18) {
             return "Monthly payment = " + calculateOverallPrice() / 6 * 1.33 + "\n" + "Overall price = " + calculateOverallPrice() * 1.33;
-        }
-        else {
-            return  "Monthly payment = " + calculateOverallPrice() / 6 * 1.39 + "\n" + "Overall price = " + calculateOverallPrice() * 1.39;
+        } else {
+            return "Monthly payment = " + calculateOverallPrice() / 6 * 1.39 + "\n" + "Overall price = " + calculateOverallPrice() * 1.39;
         }
     }
+
+
 }

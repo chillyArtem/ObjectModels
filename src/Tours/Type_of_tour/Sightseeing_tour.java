@@ -12,6 +12,19 @@ public class Sightseeing_tour extends Tour implements Feedable {
     private Transport transport;
     private TypeOfFeed feed;
     private int creditDuration;
+    private float price;
+
+    public Countries getCountry() {
+        return country;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public int getDesiredNumberOfDays() {
+        return desiredNumberOfDays;
+    }
 
     public Sightseeing_tour(Countries county) {
         this.country = county;
@@ -22,9 +35,19 @@ public class Sightseeing_tour extends Tour implements Feedable {
         this.desiredNumberOfDays = desiredNumberOfDays;
     }
 
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, float price) {
+        this(county, desiredNumberOfDays);
+        this.price = price;
+    }
+
     public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport) {
         this(county, desiredNumberOfDays);
         this.transport = transport;
+    }
+
+    public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, float price) {
+        this(county, desiredNumberOfDays, transport);
+        this.price = price;
     }
 
     public Sightseeing_tour(Countries county, int desiredNumberOfDays, Transport transport, int creditDuration) {
@@ -103,4 +126,6 @@ public class Sightseeing_tour extends Tour implements Feedable {
                 return 0;
         }
     }
+
+
 }
