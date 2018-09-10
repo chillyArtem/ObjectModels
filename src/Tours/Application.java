@@ -3,10 +3,10 @@ package Tours;
 
 import Tours.Enums.*;
 //import Tours.Type_of_tour.Available_tours;
-import Tours.Exceptions.TourNotFound;
+import Tours.Exceptions.TourDurationException;
+import Tours.Exceptions.TourNotFoundException;
 import Tours.Type_of_tour.Shop_tour;
 import Tours.Type_of_tour.Sightseeing_tour;
-import Tours.Type_of_tour.Tour;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,15 +22,16 @@ public class Application {
     private int creditDuration;
 
 
-    public static void main(String[] args) throws IOException, TourNotFound {
+    public static void main(String[] args) throws IOException, TourNotFoundException, TourDurationException {
         Application application = new Application();
         application.init();
         application.run();
     }
 
-    void init() throws IOException, TourNotFound {
+    void init() throws IOException, TourNotFoundException, TourDurationException {
         System.out.printf("%s%n%s%n%s%n", "What type of tour your want to buy:", " - Shop", " - Sightseeing");
-        TourNotFound.validateTour(typeOfTour = bufferedReader.readLine().toUpperCase());
+        typeOfTour = bufferedReader.readLine().toUpperCase();
+        TourNotFoundException.validateTour(typeOfTour);
 
 
         System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n", "What country you'd like to visit:", Countries.ESTONIA, Countries.FINLAND, Countries.FRANCE, Countries.GERMANY, Countries.ITALIA, Countries.RUSSIA);
@@ -54,7 +55,7 @@ public class Application {
         }
 
         System.out.println("How many days you want this tour long");
-        desiredNumberOfDays = Integer.parseInt(bufferedReader.readLine());
+        TourDurationException.validateTour(desiredNumberOfDays = Integer.parseInt(bufferedReader.readLine()));
 
         if (!typeOfTour.equals("SHOP")) {
             System.out.printf("%s%n%s%n%s%n%s%n%s%n", "What transport would you like to use:", "Please note traveling by bus is by default", " - Plane", " - Train", " - Bus");

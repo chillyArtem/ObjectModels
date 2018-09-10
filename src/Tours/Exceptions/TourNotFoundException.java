@@ -7,24 +7,24 @@ import java.io.InputStreamReader;
 /**
  * Created by Artem_Berdnik on 9/10/2018.
  */
-public class TourNotFound extends Exception{
+public class TourNotFoundException extends Exception{
 
-    public TourNotFound(){
+    public TourNotFoundException(){
         super();
     }
 
-    public TourNotFound(String message){
+    public TourNotFoundException(String message){
         super(message);
     }
 
     public static void validateTour(String s) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try{
-            if (!s.toUpperCase().equals("SHOP") || !s.toUpperCase().equals("SIGHTSEEING")){
-                throw new TourNotFound("Please select valid type of the tour");
+            if (!s.equals("SHOP") && !s.equals("SIGHTSEEING")){
+                throw new TourNotFoundException("Please select valid type of the tour");
             }
         }
-        catch (TourNotFound ex){
+        catch (TourNotFoundException ex){
             System.out.printf("%s%n%s%n%s", ex.getMessage(), " - Shop", " - Sightseeing");
             validateTour(reader.readLine());
         }
