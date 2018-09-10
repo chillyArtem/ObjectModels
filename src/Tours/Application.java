@@ -2,9 +2,11 @@ package Tours;
 
 
 import Tours.Enums.*;
-import Tours.Type_of_tour.Available_tours;
+//import Tours.Type_of_tour.Available_tours;
+import Tours.Exceptions.TourNotFound;
 import Tours.Type_of_tour.Shop_tour;
 import Tours.Type_of_tour.Sightseeing_tour;
+import Tours.Type_of_tour.Tour;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,26 +22,34 @@ public class Application {
     private int creditDuration;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, TourNotFound {
         Application application = new Application();
         application.init();
         application.run();
     }
 
-    void init() throws IOException {
+    void init() throws IOException, TourNotFound {
         System.out.printf("%s%n%s%n%s%n", "What type of tour your want to buy:", " - Shop", " - Sightseeing");
-        typeOfTour = bufferedReader.readLine().toUpperCase();
+        TourNotFound.validateTour(typeOfTour = bufferedReader.readLine().toUpperCase());
+
 
         System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n", "What country you'd like to visit:", Countries.ESTONIA, Countries.FINLAND, Countries.FRANCE, Countries.GERMANY, Countries.ITALIA, Countries.RUSSIA);
-        country = Countries.valueOf(bufferedReader.readLine().toUpperCase());
+        try{
+            country = Countries.valueOf(bufferedReader.readLine().toUpperCase());
+        }
+        catch (IllegalArgumentException ex){
+            System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n", "No such country in our list.","Please select correct country from the list: ", Countries.ESTONIA, Countries.FINLAND, Countries.FRANCE, Countries.GERMANY, Countries.ITALIA, Countries.RUSSIA);
+            country = Countries.valueOf(bufferedReader.readLine().toUpperCase());
+        }
+
         if (typeOfTour.toUpperCase().equals("SHOP")) {
             System.out.print("Please see what tours to the country we have: " + "\n");
-            Available_tours.getShopTour(country);
+            //Available_tours.getShopTour(country);
             System.out.println();
         }
         if (typeOfTour.toUpperCase().equals("SIGHTSEEING")) {
             System.out.print("Please see what tours to the country we have: ");
-            Available_tours.getSightseeingTour(country);
+            //Available_tours.getSightseeingTour(country);
             System.out.println();
         }
 
