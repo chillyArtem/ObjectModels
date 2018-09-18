@@ -23,7 +23,7 @@ public abstract class device implements Workable{
         this.totalElectricityConsumption = totalElectricityConsumption;
     }
 
-    double getElectricityConsumption() {
+    public double getElectricityConsumption() {
         return electricityConsumption;
     }
 

@@ -6,6 +6,7 @@ import HomeStuff.Devices.Televisor;
 import HomeStuff.OperationsWithDevices.DeviceSearching;
 import HomeStuff.OperationsWithDevices.DeviceSorting;
 import HomeStuff.Technical.ReadFromFile;
+import HomeStuff.Technical.WriteToFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ public class Application {
     private ArrayList<device> devicesAtHome = new ArrayList<>();
     private ArrayList<device> devicesAtHome_2 = new ArrayList<>();
 
-    void initialize() {
+    void initialize() throws IOException {
 
         //Fill a collection manually
-        Fridge LG120 = new Fridge("LG 120", "black", 1.2, 35000);
+        Fridge LG120 = new Fridge("LG120", "black", 1.2, 35000);
         Kettle Phillips = new Kettle("Phillips 123", "Yellow", 1.5, 3000);
         Televisor apple = new Televisor("Apple set", "white", 0.2, 120000);
 
@@ -32,18 +33,24 @@ public class Application {
         apple.plugIn();
 
         //Fill another collection from a file
+        devicesAtHome_2 = ReadFromFile.FillArraylistFromFile();
 
+        for (device device : devicesAtHome) {
+            if (device instanceof Fridge) {
+                WriteToFile.write(device);
+                System.out.println("one string is written");
+            }
+        }
 
     }
 
-    void start() throws IOException {
+    void start() {
         //CalculateOveralElectricityConsumption.calculate(devicesAtHome);
         //DeviceSorting.sortByPrice(devicesAtHome);
         //DeviceSearching.searchByColor(devicesAtHome, "Black");
 
-        devicesAtHome_2 = ReadFromFile.FillArraylistFromFile();
-        DeviceSorting.sortByPrice(devicesAtHome_2);
-        DeviceSearching.searchByColor(devicesAtHome_2, "red");
+        //DeviceSorting.sortByPrice(devicesAtHome_2);
+        //DeviceSearching.searchByColor(devicesAtHome_2, "red");
     }
 
     public static void main(String[] args) throws IOException {
