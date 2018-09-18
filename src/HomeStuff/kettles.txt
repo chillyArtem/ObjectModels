@@ -1,0 +1,4 @@
+Asus1 green 1.0 2300
+Xiaomi white 1.4 3800
+Boshch black 0.3 4000
+KitchenAid Red 0.9 19000
