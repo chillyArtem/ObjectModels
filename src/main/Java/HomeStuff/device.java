@@ -3,7 +3,7 @@ package HomeStuff;
 /**
  * Created by Artem_Berdnik on 9/18/2018.
  */
-public abstract class device implements Workable{
+public abstract class device implements Workable {
 
     private String model;
     private String color;

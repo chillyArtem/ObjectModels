@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Artem_Berdnik on 9/18/2018.
  */
-public class CalculateOveralElectricityConsumption {
+public class CalculateOverallElectricityConsumption {
 
     public static void calculate(ArrayList<device> devicesAtHome){
         double electricityConsumption = 0;

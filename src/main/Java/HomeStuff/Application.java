@@ -3,15 +3,13 @@ package HomeStuff;
 import HomeStuff.Devices.Fridge;
 import HomeStuff.Devices.Kettle;
 import HomeStuff.Devices.Televisor;
-import HomeStuff.OperationsWithDevices.DeviceSearching;
-import HomeStuff.OperationsWithDevices.DeviceSorting;
 import HomeStuff.Technical.ReadFromFile;
 import HomeStuff.Technical.WriteToFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
+/**@SupressWarnings
  * Created by Artem_Berdnik on 9/18/2018.
  */
 public class Application {
@@ -45,7 +43,7 @@ public class Application {
     }
 
     void start() {
-        //CalculateOveralElectricityConsumption.calculate(devicesAtHome);
+        //CalculateOverallElectricityConsumption.calculate(devicesAtHome);
         //DeviceSorting.sortByPrice(devicesAtHome);
         //DeviceSearching.searchByColor(devicesAtHome, "Black");
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class WriteToFile {
 
     public static void write(device device) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("D:\\ObjectModels\\src\\HomeStuff\\fridges.txt"))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("D:\\ObjectModels\\src\\main\\Java\\HomeStuff\\fridges.txt"))) {
             String writeMe = device.getModel() + " " + device.getColor() + " " + device.getElectricityConsumption() + " " + device.getPrice();
             System.out.println(writeMe);
 

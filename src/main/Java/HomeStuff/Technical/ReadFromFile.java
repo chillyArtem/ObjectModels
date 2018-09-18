@@ -14,7 +14,7 @@ public class ReadFromFile {
         ArrayList<device> arrayList = new ArrayList<>();
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("D:\\ObjectModels\\src\\HomeStuff\\kettles.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("D:\\ObjectModels\\src\\main\\Java\\HomeStuff\\kettles.txt")));
             String str;
             while ((str = reader.readLine()) != null) {
                 String m[] = str.split(" ");
