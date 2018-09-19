@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculateOverallElectricityConsumptionTest {
     @Test
     @DisplayName("Check calculation works correctly")
-    void calculate(ArrayList<device> devicesAtHome) {
+    void calculate() {
 
         double totalElectricity = 0;
 
@@ -38,5 +38,4 @@ class CalculateOverallElectricityConsumptionTest {
 
         assertThat(totalElectricity).isEqualTo(1.5);
     }
-
 }
